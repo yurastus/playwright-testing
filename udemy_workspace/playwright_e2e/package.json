@@ -6,7 +6,9 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "demo": "npx playwright test --headed --debug --ui"
+  },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.0.1"
