@@ -7,10 +7,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "demo": "npx playwright test --headed --debug --ui"
+    "debug:trace": "npx playwright test --trace on",
+    "debug:ui": "npx playwright test --headed --debug --ui",
+    "debug:cli": "PWDEBUG=1 npx playwright test",
+    "demo": "npx playwright test --headed"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.0.1"
+    "@types/node": "^26.0.1",
+    "allure-playwright": "^3.10.2"
   }
 }
