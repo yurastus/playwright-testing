@@ -1,5 +1,10 @@
 import { test, expect } from "@playwright/test";
 
+test.beforeEach(async ({ page }) => {
+  console.log(`>>> test.beforeEach`);
+});
+
+
 //npm run debug
 test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", description: "Test description"}}, () => {
   
@@ -21,7 +26,9 @@ test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", des
     async ({ page, browserName }, testInfo) => {
     
     test.skip(browserName === "firefox", "This test is not supported in firefox");
-    await page.getByLabel("Facility")
+    test.setTimeout(testInfo.timeout - 3000);
+
+    await page.getByLabel("Facility11")
       .selectOption("Hongkong CURA Healthcare Center");
       //.selectOption({index: 0});
 
