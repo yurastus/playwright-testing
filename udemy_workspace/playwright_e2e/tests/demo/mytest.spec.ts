@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 //npm run debug
-test.describe("make appointment", () => {
+test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", description: "Test description"}}, () => {
   
   test.beforeEach("login", async ({page}) => {
     await page.goto('https://katalon-demo-cura.herokuapp.com/');
@@ -16,13 +16,21 @@ test.describe("make appointment", () => {
     
   });
 
-  test("Should male an appoimntment with non default values", async ({ page }) => {
+  test.only("Should male an appoimntment with non default values", 
+    {annotation : {type : "Bug Jira - XXXX test", description: "Test Bug"}, tag: "@smoke"}, 
+    async ({ page, browserName }, testInfo) => {
     
+    test.skip(browserName === "firefox", "This test is not supported in firefox");
     await page.getByLabel("Facility")
       .selectOption("Hongkong CURA Healthcare Center");
       //.selectOption({index: 0});
 
-      
+
+    let pageScreenshot = await page.screenshot({fullPage: true});
+    testInfo.attach("page screenshot", { body: pageScreenshot, contentType: "image/png" });
+
+
+
     let options = page.getByLabel("Facility").locator("option");
 
     let arr = []
@@ -83,6 +91,15 @@ test.describe("make appointment", () => {
 
     test("Should test 2", async ({ page }) => {
       await page.getByLabel("Facility").selectOption("Hongkong CURA Healthcare Center");
+    });
+
+
+      
+    test("Should test config", async ({ page, browserName, context }, testInfo) => {
+      
+
+      console.log(`>>> testInfo prop: ${JSON.stringify(testInfo.title)}`);
+
     });
 
 });

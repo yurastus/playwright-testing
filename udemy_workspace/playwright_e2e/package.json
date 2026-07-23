@@ -10,6 +10,7 @@
     "debug:trace": "npx playwright test --trace on",
     "debug:ui": "npx playwright test --headed --debug --ui",
     "debug:cli": "PWDEBUG=1 npx playwright test",
+    "tag": "npx playwright test --grep @smoke",
     "demo": "npx playwright test --headed"
   },
   "devDependencies": {
