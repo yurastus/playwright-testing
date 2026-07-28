@@ -4,7 +4,6 @@ test.beforeEach(async ({ page }) => {
   console.log(`>>> test.beforeEach`);
 });
 
-
 //npm run debug
 test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", description: "Test description"}}, () => {
   

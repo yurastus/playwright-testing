@@ -4,17 +4,28 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+// npm install -D dotenv
+// node -e "console.log('CPU cores:', require('os').cpus().length)"
+// count how many tests are in the project
+// npx playwright test --list
+
+ import dotenv from 'dotenv';
+ import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+console.log(`Hello from config 😎`);
+
 export default defineConfig({
   testDir: "./tests",
   timeout: 10 * 1000,
   expect: { timeout: 3000 },
+  globalSetup: require.resolve("./tests/helpers/global-setup.ts"),
+  globalTeardown: require.resolve("./tests/helpers/global-teardown.ts"),
   // globalTimeout: 60 * 1000,
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -63,7 +74,13 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { 
+        ...devices["Desktop Chrome"],
+        // viewport: null,
+        // launchOptions: {
+          // args: ["--start-maximized"],
+        // },
+      },
     },
 
     //  {
@@ -73,7 +90,7 @@ export default defineConfig({
 
     // {
     //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
+    //   use: { ...devices['Desktop Safari'], ignoreHTTPSErrors: true },
     // },
 
     /* Test against mobile viewports. */
@@ -95,6 +112,9 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
+    // { name: "Galaxy A55",
+      // use: { ...devices["Galaxy S24"] },
+    // }
   ],
 
   /* Run your local dev server before starting the tests */
