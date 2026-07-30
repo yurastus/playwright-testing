@@ -20,7 +20,8 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 console.log(`Hello from config 😎`);
 
-export default defineConfig({
+//export default defineConfig({
+export const baseConfig = defineConfig({
   testDir: "./tests",
   timeout: 10 * 1000,
   expect: { timeout: 3000 },
