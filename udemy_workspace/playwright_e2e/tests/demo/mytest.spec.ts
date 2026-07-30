@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import constants from "../../data/constant.json";
+import TestData from "../../data/test-date";
 
 test.beforeEach(async ({ page }) => {
   console.log(`>>> test.beforeEach`);
@@ -20,7 +22,7 @@ test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", des
     
   });
 
-  test.only("Should male an appoimntment with non default values", 
+  test("Should male an appoimntment with non default values", 
     {annotation : {type : "Bug Jira - XXXX test", description: "Test Bug"}, tag: "@smoke"}, 
     async ({ page, browserName }, testInfo) => {
     
@@ -39,7 +41,7 @@ test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", des
 
     let options = page.getByLabel("Facility").locator("option");
 
-    let arr = []
+    let arr: string[] = [];
     for (let elem of await options.all()) {
 
       let elText = await elem.textContent();
@@ -102,10 +104,23 @@ test.describe("make appointment", {annotation : {type : "Story Jira - XXXX", des
 
       
     test("Should test config", async ({ page, browserName, context }, testInfo) => {
-      
-
       console.log(`>>> testInfo prop: ${JSON.stringify(testInfo.title)}`);
+    });
+
+
+
+    //test data array test example
+    const makeAppTestData = TestData.makeAppointmentTestData();
+
+    for (const appData of makeAppTestData) {
+        console.log(`Test data: ${JSON.stringify(appData)}`);
+
+        
+        test(`${appData.testId}: Should test data`, async ({ page }) => {
+          console.log(`In test constants: ${JSON.stringify(appData)}`);
 
     });
+
+    }
 
 });

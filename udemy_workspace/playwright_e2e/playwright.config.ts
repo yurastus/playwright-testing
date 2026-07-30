@@ -28,6 +28,7 @@ export default defineConfig({
   globalTeardown: require.resolve("./tests/helpers/global-teardown.ts"),
   // globalTimeout: 60 * 1000,
   /* Run tests in files in parallel */
+  //true - wiil run every test in separate worker , false will run every project in separate workers - will take half of pc capacity CPU
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
