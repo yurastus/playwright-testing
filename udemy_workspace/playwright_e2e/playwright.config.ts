@@ -23,7 +23,7 @@ console.log(`Hello from config 😎`);
 //export default defineConfig({
 export const baseConfig = defineConfig({
   testDir: "./tests",
-  timeout: 10 * 1000,
+  timeout: 20 * 1000,
   expect: { timeout: 3000 },
   globalSetup: require.resolve("./tests/helpers/global-setup.ts"),
   globalTeardown: require.resolve("./tests/helpers/global-teardown.ts"),

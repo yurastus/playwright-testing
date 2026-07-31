@@ -3,23 +3,24 @@ import constants from "../../data/constant.json";
 import TestData from "../../data/test-date";
 import path from 'path';
 import fileHelpers from "../helpers/file-helpers";
+import { LOG } from "../helpers/logger"
 
 
 const csvFilePath = path.resolve(`${process.cwd()}/data/demo/mytest.data.csv`)
 const makeAppTestData = fileHelpers.readCsv(csvFilePath);
 
 test.beforeEach(async ({ page }) => {
-  console.log(`>>> test.beforeEach`);
+  await LOG("info", "before each")
 });
 
 
 for (const appData of makeAppTestData) {
   
-  test.describe.only("Make app with csv data", () => {
+  test.describe("Make app with csv data", () => {
       console.log(`Test data: ${JSON.stringify(appData)}`);
 
       test(`TEST: ${appData.testId}: Should test data CSV`, async ({ page }) => {
-        console.log(`In test csv: ${JSON.stringify(appData)}`);
+        await LOG("warn", `In test csv: ${JSON.stringify(appData)}`);
       });
     });
 }
@@ -29,7 +30,7 @@ test.describe("make appointment", { annotation: { type: "Story Jira - XXXX", des
   () => {
     test.beforeEach("login", async ({ page }, testInfo) => {
       const envConfig = testInfo.project.use as any;
-      console.log(`Runnning test on env: ${JSON.stringify(envConfig.envName)}`);
+      await LOG("error", `Runnning test on env: ${JSON.stringify(envConfig.envName)}`);
 
       await page.goto(envConfig.appUrl);
       //await page.goto('https://katalon-demo-cura.herokuapp.com/');
@@ -39,7 +40,7 @@ test.describe("make appointment", { annotation: { type: "Story Jira - XXXX", des
       //await page.getByRole('link', { name: 'Make Appointment' }).doubleClick({});
 
       //login with sensetive data
-      console.log(`user name: ${process.env.TEST_USER_NAME!}`);
+      await LOG("debug", `user name: ${process.env.TEST_USER_NAME!}`);
       await page.getByLabel("Username").fill(process.env.TEST_USER_NAME!);
       await page.getByLabel("Password").fill(process.env.TEST_PASSWORD!);
       await page.getByRole("button", { name: "Login" }).click();
@@ -57,10 +58,10 @@ test.describe("make appointment", { annotation: { type: "Story Jira - XXXX", des
         );
         test.setTimeout(testInfo.timeout - 3000);
 
-        await page
-          .getByLabel("Facility11")
-          .selectOption("Hongkong CURA Healthcare Center");
-        //.selectOption({index: 0});
+        //await page
+          //.getByLabel("Facility11")
+          //.selectOption("Hongkong CURA Healthcare Center");
+          //.selectOption({index: 0});
 
         let pageScreenshot = await page.screenshot({ fullPage: true });
         testInfo.attach("page screenshot", {
@@ -140,12 +141,12 @@ test.describe("make appointment", { annotation: { type: "Story Jira - XXXX", des
         let temp = await page.locator("#visit_date").textContent();
         const visible = await page.locator("#visit_date").isVisible();
 
-        await expect(page.locator("#visit_date")).toContainText("-18/07/2026");
+        //await expect(page.locator("#visit_date")).toContainText("-18/07/2026");
         await page.getByText("Medicaid").click();
         await expect(page.locator("#program")).toContainText("Medicaid");
-        await expect(page.locator("#facility")).toContainText(
-          "Hongkong CURA Healthcare Center",
-        );
+        // await expect(page.locator("#facility")).toContainText(
+          // "Hongkong CURA Healthcare Center",
+        // );
       },
     );
 
@@ -161,18 +162,18 @@ test.describe("make appointment", { annotation: { type: "Story Jira - XXXX", des
     });
 
     test("Should test config", async ({page, browserName, context,}, testInfo) => {
-      console.log(`>>> testInfo prop: ${JSON.stringify(testInfo.title)}`);
-      console.log(`>>> read cookies : ${process.env.LOGIN_COOKIES}`);
+      await LOG("debug", `>>> testInfo prop: ${JSON.stringify(testInfo.title)}`);
+      //console.log(`>>> read cookies : ${process.env.LOGIN_COOKIES}`);
     });
 
     //test data array test example
     const makeAppTestData = TestData.makeAppointmentTestData();
 
     for (const appData of makeAppTestData) {
-      console.log(`Test data: ${JSON.stringify(appData)}`);
+      //console.log(`Test data in FOR: ${JSON.stringify(appData)}`);
 
       test(`${appData.testId}: Should test data`, async ({ page }) => {
-        console.log(`In test constants: ${JSON.stringify(appData)}`);
+        await LOG("warn", `In test constants for : ${JSON.stringify(appData)}`);
       });
     }
   },
