@@ -3,7 +3,7 @@ import chalk, { colorNames } from "chalk";
 
 export type Level = "info" | "warn" | "error" | "debug";
 
-export async function log(level: Level, message: string): Promise<void> {
+export async function LOG(level: Level, message: string): Promise<void> {
   const timestamp = new Date().toISOString();
   const plainLine = `[${timestamp}] [${level.toUpperCase()}] ${message}`;
   let colorLine = plainLine;
