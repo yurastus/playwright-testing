@@ -12,10 +12,13 @@
     "debug:cli": "PWDEBUG=1 npx playwright test",
     "tag": "npx playwright test --grep @smoke",
     "demo": "npx playwright test --headed",
+    "demo:multi-window": "npx playwright test --config=config/uat.playwright.config.ts --headed tests/demo/multi.window.spec.ts",
     "log": "npx playwright test > output.log",
     "uat:list tests": "npx playwright test --config=config/uat.playwright.config.ts --list",
     "uat:tests": "npx playwright test --config=config/uat.playwright.config.ts tests/demo/mytest.spec.ts",
-    "dev:tests": "npx playwright test --config=config/dev.playwright.config.ts tests/demo/mytest.spec.ts"
+    "dev:tests": "npx playwright test --config=config/dev.playwright.config.ts tests/demo/mytest.spec.ts",
+    "uat:home": "npx playwright test --config=config/uat.playwright.config.ts tests/demo/home.spec.ts",
+    "uat:api": "npx playwright test --config=config/uat.playwright.config.ts tests/demo/api/users.api.spec.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
