@@ -13,3 +13,4 @@ allure-results/
 /test-results.*
 config/test-results.*
 **/.DS_Store
+/.history
