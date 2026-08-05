@@ -14,6 +14,7 @@ function writeFile(filePath: string, data: string) {
   try {
     fs.writeFileSync(filePath, data, { encoding: "utf-8" });
     console.log(`File written successfully to ${filePath}`);
+    
   } catch (err) {
     console.error(`Error writing file to ${filePath}:`, err);
   }
