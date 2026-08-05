@@ -14,3 +14,5 @@ allure-results/
 config/test-results.*
 **/.DS_Store
 /.history
+/.claude
+/.codemie
