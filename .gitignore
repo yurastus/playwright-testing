@@ -16,3 +16,6 @@ config/test-results.*
 /.history
 /.claude
 /.codemie
+/.playwright-mcp
+/seed-spec.md
+/test-plan.md
