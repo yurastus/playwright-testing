@@ -48,7 +48,8 @@ test.describe("Make an appointment", { annotation: { type: "Story Jira - XXXX", 
         await page.getByRole("textbox", { name: "Visit Date (Required)" }).click();
         await page.getByRole("textbox", { name: "Visit Date (Required)" }).fill("18/07/2026");
         await page.getByRole("textbox", { name: "Visit Date (Required)" }).press("Enter");
-        await page.getByRole("textbox", { name: "Comment" }).click();
+        await page.keyboard.press("Escape");
+        await page.getByRole("textbox", { name: "Comment" }).scrollIntoViewIfNeeded();
         await page.getByRole("textbox", { name: "Comment" }).fill("this is comment");
 
         await page.getByRole("button", { name: "Book Appointment" }).click();
