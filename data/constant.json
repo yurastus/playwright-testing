@@ -1,0 +1,9 @@
+{
+    "STATUSCODES": {
+        "success": 200,
+        "notfound": 404,
+        "unauthorized": 401,
+        "badrequest": 400,
+        "servererror": 500
+    }
+}

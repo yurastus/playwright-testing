@@ -1,0 +1,21 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.env
+allure-results/
+/logs/
+*.log
+/test-results.*
+config/test-results.*
+**/.DS_Store
+/.history
+/.claude
+/.codemie
+/.playwright-mcp
+/seed-spec.md
+/test-plan.md
